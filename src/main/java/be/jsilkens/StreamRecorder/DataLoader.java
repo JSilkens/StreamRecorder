@@ -1,15 +1,14 @@
 package be.jsilkens.StreamRecorder;
 
-import be.jsilkens.StreamRecorder.Domain.Schedule;
-import be.jsilkens.StreamRecorder.Domain.ScheduleList;
+import be.jsilkens.StreamRecorder.Domain.*;
 import be.jsilkens.StreamRecorder.Repository.*;
-import be.jsilkens.StreamRecorder.Domain.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -37,13 +36,13 @@ public class DataLoader implements CommandLineRunner {
         addScheduleList();
         addSchedule();
         addStreams();
+        addRecordings();
     }
 
     private void addScheduleList() {
         scheduleListRepository.save(new ScheduleList("My list"));
     }
     private void addSchedule() {
-
     }
 
     private void addStreams() {
@@ -52,5 +51,9 @@ public class DataLoader implements CommandLineRunner {
         streamRepository.save(new Stream("Studio Brussel","http://icecast.vrtcdn.be/stubru-high.mp3","audio/mpeg","Life is music"));
         LOG.info("Streams added " +  streamRepository.findAll().size());
 
+    }
+
+    private void addRecordings(){
+        recordingRepository.save(new Recording("eerste rec", new Date(), new Date(), null));
     }
 }
