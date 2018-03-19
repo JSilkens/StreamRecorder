@@ -1,5 +1,7 @@
 package be.jsilkens.StreamRecorder.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +23,13 @@ public class Schedule {
     @JoinColumn(name = "streamid" , nullable = false)
     Stream recordStream;
 
-   @OneToMany(targetEntity = ScheduleItem.class , mappedBy = "scheduleItem" , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = ScheduleItem.class , mappedBy = "schedule" , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @JsonIgnore
     List<ScheduleItem> scheduleItems;
 
     @ManyToOne
     @JoinColumn(name = "schedulelistid")
     private ScheduleList scheduleList;
-
-
 
     public Schedule(Stream recordStream, ScheduleList scheduleList) {
         this.recordStream = recordStream;

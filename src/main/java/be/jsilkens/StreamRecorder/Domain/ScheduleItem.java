@@ -13,14 +13,19 @@ public class ScheduleItem {
     Date start;
     Date end;
 
+    @ManyToOne
+    @JoinColumn(name = "scheduleId", nullable = false)
+    Schedule schedule;
+
     //@OneToMany(targetEntity = Recording.class)
     Recording[] recordings;
 
-    public ScheduleItem(String name, Date start, Date end, Recording[] recordings) {
+    public ScheduleItem(String name, Date start, Date end, Recording[] recordings, Schedule schedule) {
         this.name = name;
         this.start = start;
         this.end = end;
         this.recordings = recordings;
+        this.schedule = schedule;
     }
 
     public ScheduleItem() {
@@ -66,6 +71,14 @@ public class ScheduleItem {
         this.recordings = recordings;
     }
 
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
     @Override
     public String toString() {
         return "ScheduleItem{" +
@@ -74,6 +87,7 @@ public class ScheduleItem {
                 ", start=" + start +
                 ", end=" + end +
                 ", recordings=" + recordings +
+                ", schedule =" + schedule +
                 '}';
     }
 }
