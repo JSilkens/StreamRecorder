@@ -9,4 +9,5 @@ public class StreamRecorderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StreamRecorderApplication.class, args);
 	}
+
 }
