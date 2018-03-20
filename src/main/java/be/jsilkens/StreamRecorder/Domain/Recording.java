@@ -6,28 +6,30 @@ import java.util.Date;
 
 /*
     Recording
-    Recording has a start and end
+    Recording has a start and end date and and a recording file.
  */
 @Entity
 public class Recording {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false,updatable = false , name = "recordingid")
     Long id;
     String name;
     Date start;
     Date end;
     File recording;
 
-//    @ManyToOne
-//    @JoinColumn(name = "scheduleItemId", nullable = false)
-//    ScheduleItem scheduleItem;
+    @ManyToOne
+    @JoinColumn(name = "scheduleitemid", nullable = false)
+    ScheduleItem scheduleItem;
 
-    public Recording(String name, Date start, Date end, File recording) {
+    public Recording(String name, Date start, Date end, File recording , ScheduleItem scheduleItem) {
         this.id = id;
         this.name = name;
         this.start = start;
         this.end = end;
         this.recording = recording;
+        this.scheduleItem = scheduleItem;
     }
 
     public Recording() {
@@ -71,5 +73,25 @@ public class Recording {
 
     public void setRecording(File recording) {
         this.recording = recording;
+    }
+
+    public ScheduleItem getScheduleItem() {
+        return scheduleItem;
+    }
+
+    public void setScheduleItem(ScheduleItem scheduleItem) {
+        this.scheduleItem = scheduleItem;
+    }
+
+    @Override
+    public String toString() {
+        return "Recording{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                ", recording=" + recording +
+                ", scheduleItem=" + scheduleItem +
+                '}';
     }
 }

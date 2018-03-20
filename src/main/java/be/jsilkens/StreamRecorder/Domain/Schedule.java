@@ -9,13 +9,13 @@ import java.util.List;
 /*
     Schedule
     =============
-    A schedule has a stream where it can record from.
-    It has as list of scheduleItems
+    A schedule is a single program from a specific channel (stream).
+    It has a recording plan and a list of saved recordings.
  */
 @Entity
 public class Schedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false,updatable = false , name = "scheduleid")
     private Long id;
 

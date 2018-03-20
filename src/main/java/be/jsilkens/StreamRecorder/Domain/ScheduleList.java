@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class ScheduleList {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false,updatable = false , name = "schedulelistid")
     Long id;
     String collectionName;

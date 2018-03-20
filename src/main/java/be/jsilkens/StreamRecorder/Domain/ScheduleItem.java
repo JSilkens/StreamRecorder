@@ -1,5 +1,7 @@
 package be.jsilkens.StreamRecorder.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,8 @@ import java.util.List;
 @Entity
 public class ScheduleItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false,updatable = false , name = "scheduleitemid")
     Long id;
     String name;
     Date start;
@@ -17,10 +20,11 @@ public class ScheduleItem {
     @JoinColumn(name = "scheduleId", nullable = false)
     Schedule schedule;
 
-    //@OneToMany(targetEntity = Recording.class)
-    Recording[] recordings;
+    @OneToMany(targetEntity = Recording.class , mappedBy = "scheduleItem" , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @JsonIgnore
+    List<Recording> recordings;
 
-    public ScheduleItem(String name, Date start, Date end, Recording[] recordings, Schedule schedule) {
+    public ScheduleItem(String name, Date start, Date end, Schedule schedule) {
         this.name = name;
         this.start = start;
         this.end = end;
@@ -63,11 +67,11 @@ public class ScheduleItem {
         this.end = end;
     }
 
-    public Recording[] getRecordings() {
+    public List<Recording> getRecordings() {
         return recordings;
     }
 
-    public void setRecordings(Recording[] recordings) {
+    public void setRecordings(List<Recording> recordings) {
         this.recordings = recordings;
     }
 

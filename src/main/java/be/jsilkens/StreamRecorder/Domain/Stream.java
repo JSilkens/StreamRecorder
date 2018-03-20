@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 public class Stream {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String name;
     String link;
