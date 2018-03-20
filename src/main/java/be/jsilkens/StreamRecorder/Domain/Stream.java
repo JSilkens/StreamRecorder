@@ -1,9 +1,6 @@
 package be.jsilkens.StreamRecorder.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /*
     A webstream class.
@@ -12,11 +9,16 @@ import javax.persistence.Id;
 public class Stream {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String name;
-    String link;
-    String mimeType;
-    String description;
+    @Column(nullable = false, updatable = false, name = "streamid")
+    private long id;
+
+    private String name;
+
+    private String link;
+
+    private String mimeType;
+
+    private String description;
 
     public Stream(String name, String link, String mimeType, String description) {
         this.name = name;

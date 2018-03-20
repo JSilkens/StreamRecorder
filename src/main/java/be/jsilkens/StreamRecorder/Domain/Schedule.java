@@ -16,16 +16,16 @@ import java.util.List;
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,updatable = false , name = "scheduleid")
+    @Column(nullable = false, updatable = false, name = "scheduleid")
     private Long id;
 
     @OneToOne(targetEntity = Stream.class)
-    @JoinColumn(name = "streamid" , nullable = false)
-    Stream recordStream;
+    @JoinColumn(name = "streamid", nullable = false)
+    private Stream recordStream;
 
-    @OneToMany(targetEntity = ScheduleItem.class , mappedBy = "schedule" , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = ScheduleItem.class, mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    List<ScheduleItem> scheduleItems;
+    private List<ScheduleItem> scheduleItems;
 
     @ManyToOne
     @JoinColumn(name = "schedulelistid")

@@ -10,25 +10,27 @@ import java.util.List;
 public class ScheduleItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,updatable = false , name = "scheduleitemid")
-    Long id;
-    String name;
-    Date start;
-    Date end;
+    @Column(nullable = false, updatable = false, name = "scheduleitemid")
+    private Long id;
+
+    private String name;
+
+    private Date start;
+
+    private Date end;
 
     @ManyToOne
     @JoinColumn(name = "scheduleId", nullable = false)
-    Schedule schedule;
+    private Schedule schedule;
 
-    @OneToMany(targetEntity = Recording.class , mappedBy = "scheduleItem" , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Recording.class, mappedBy = "scheduleItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    List<Recording> recordings;
+    private List<Recording> recordings;
 
     public ScheduleItem(String name, Date start, Date end, Schedule schedule) {
         this.name = name;
         this.start = start;
         this.end = end;
-        this.recordings = recordings;
         this.schedule = schedule;
     }
 

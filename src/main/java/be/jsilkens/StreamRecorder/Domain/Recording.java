@@ -12,23 +12,26 @@ import java.util.Date;
 public class Recording {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,updatable = false , name = "recordingid")
-    Long id;
-    String name;
-    Date start;
-    Date end;
-    File recording;
+    @Column(nullable = false, updatable = false, name = "recordingid")
+    private Long id;
+
+    private String name;
+
+    private Date start;
+
+    private Date end;
+
+    private File recordingFile;
 
     @ManyToOne
     @JoinColumn(name = "scheduleitemid", nullable = false)
-    ScheduleItem scheduleItem;
+    private ScheduleItem scheduleItem;
 
-    public Recording(String name, Date start, Date end, File recording , ScheduleItem scheduleItem) {
-        this.id = id;
+    public Recording(String name, Date start, Date end, File recording, ScheduleItem scheduleItem) {
         this.name = name;
         this.start = start;
         this.end = end;
-        this.recording = recording;
+        this.recordingFile = recording;
         this.scheduleItem = scheduleItem;
     }
 
@@ -67,12 +70,12 @@ public class Recording {
         this.end = end;
     }
 
-    public File getRecording() {
-        return recording;
+    public File getRecordingFile() {
+        return recordingFile;
     }
 
-    public void setRecording(File recording) {
-        this.recording = recording;
+    public void setRecordingFile(File recordingFile) {
+        this.recordingFile = recordingFile;
     }
 
     public ScheduleItem getScheduleItem() {
@@ -90,7 +93,7 @@ public class Recording {
                 ", name='" + name + '\'' +
                 ", start=" + start +
                 ", end=" + end +
-                ", recording=" + recording +
+                ", recordingFile=" + recordingFile +
                 ", scheduleItem=" + scheduleItem +
                 '}';
     }

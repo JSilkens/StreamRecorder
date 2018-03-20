@@ -8,16 +8,18 @@ import java.util.List;
 public class ScheduleList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,updatable = false , name = "schedulelistid")
-    Long id;
-    String collectionName;
-    @OneToMany(targetEntity = Schedule.class , mappedBy = "scheduleList" , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
-    List<Schedule> scheduleList;
+    @Column(nullable = false, updatable = false, name = "schedulelistid")
+    private Long id;
+
+    private String collectionName;
+
+    @OneToMany(targetEntity = Schedule.class, mappedBy = "scheduleList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Schedule> scheduleList;
 
     public ScheduleList() {
     }
 
-    public ScheduleList(String collectionName){
+    public ScheduleList(String collectionName) {
         this.collectionName = collectionName;
     }
 
