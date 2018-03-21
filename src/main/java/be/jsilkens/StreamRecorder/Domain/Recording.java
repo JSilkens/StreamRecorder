@@ -27,11 +27,11 @@ public class Recording {
     @JoinColumn(name = "scheduleitemid", nullable = false)
     private ScheduleItem scheduleItem;
 
-    public Recording(String name, Date start, Date end, File recording, ScheduleItem scheduleItem) {
+    public Recording(String name, Date start, Date end, File recordingFile, ScheduleItem scheduleItem) {
         this.name = name;
         this.start = start;
         this.end = end;
-        this.recordingFile = recording;
+        this.recordingFile = recordingFile;
         this.scheduleItem = scheduleItem;
     }
 

@@ -10,7 +10,7 @@ public class RecordingPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false, name = "recordingplanitemid")
+    @Column(nullable = false, updatable = false, name = "recordingplanid")
     private Long id;
 
     @OneToMany(targetEntity = RecordingPlanItem.class, mappedBy = "recordingPlan", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

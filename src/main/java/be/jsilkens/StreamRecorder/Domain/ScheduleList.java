@@ -1,6 +1,8 @@
 package be.jsilkens.StreamRecorder.Domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class ScheduleList {
     private String collectionName;
 
     @OneToMany(targetEntity = Schedule.class, mappedBy = "scheduleList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Schedule> scheduleList;
 
     public ScheduleList() {

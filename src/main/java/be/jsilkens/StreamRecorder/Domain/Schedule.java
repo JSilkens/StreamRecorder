@@ -70,4 +70,14 @@ public class Schedule {
     public void setScheduleList(ScheduleList scheduleList) {
         this.scheduleList = scheduleList;
     }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "id=" + id +
+                ", recordStream=" + recordStream +
+                ", scheduleItems=" + scheduleItems +
+                ", scheduleList=" + scheduleList +
+                '}';
+    }
 }
