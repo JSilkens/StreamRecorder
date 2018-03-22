@@ -2,6 +2,7 @@ package be.jsilkens.StreamRecorder.Domain;
 
 import javax.persistence.*;
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /*
@@ -18,9 +19,9 @@ public class Recording {
 
     private String name;
 
-    private Date start;
+    private LocalDateTime start;
 
-    private Date end;
+    private LocalDateTime end;
 
     private File recordingFile;
 
@@ -28,7 +29,7 @@ public class Recording {
     @JoinColumn(name = "scheduleitemid", nullable = false)
     private ScheduleItem scheduleItem;
 
-    public Recording(String name, Date start, Date end, File recordingFile, ScheduleItem scheduleItem) {
+    public Recording(String name, LocalDateTime start, LocalDateTime end, File recordingFile, ScheduleItem scheduleItem) {
         this.name = name;
         this.start = start;
         this.end = end;
@@ -55,19 +56,19 @@ public class Recording {
         this.name = name;
     }
 
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 

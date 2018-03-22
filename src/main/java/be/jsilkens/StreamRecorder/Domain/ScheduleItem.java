@@ -3,6 +3,7 @@ package be.jsilkens.StreamRecorder.Domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  Schedule Item
  -------------
  A schedule item a radio station's program. It contains a list of saved recordings and a recording plan.
+ It has a start and end date for the recording period. The recording plan will repeat forever if no end date is given.
  */
 @Entity
 public class ScheduleItem {
@@ -20,9 +22,9 @@ public class ScheduleItem {
 
     private String name;
 
-    private Date start;
+    private LocalDateTime start;
 
-    private Date end;
+    private LocalDateTime end;
 
     @ManyToOne
     @JoinColumn(name = "scheduleId", nullable = false)
@@ -32,7 +34,7 @@ public class ScheduleItem {
     @JsonIgnore
     private List<Recording> recordings;
 
-    public ScheduleItem(String name, Date start, Date end, Schedule schedule) {
+    public ScheduleItem(String name, LocalDateTime start, LocalDateTime end, Schedule schedule) {
         this.name = name;
         this.start = start;
         this.end = end;
@@ -58,19 +60,19 @@ public class ScheduleItem {
         this.name = name;
     }
 
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 

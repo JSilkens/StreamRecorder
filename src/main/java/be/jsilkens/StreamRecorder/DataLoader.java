@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -70,12 +72,16 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void addRecordings(){
-        recordingRepository.save(new Recording("eerste rec", new Date(), new Date(), null
+        recordingRepository.save(new Recording("eerste rec",
+                LocalDateTime.of(2018,12,30,12,00),
+                LocalDateTime.of(2018,12,30,13,00), null
                 , scheduleItemRepository.getOne((long) 1)));
         LOG.info("Recordings added " +  recordingRepository.findAll().size());
     }
     private void addScheduleItems() {
-        scheduleItemRepository.save(new ScheduleItem("Lefto",new Date() , new Date() ,
+        scheduleItemRepository.save(new ScheduleItem("Lefto",
+                LocalDateTime.of(2018,5,5,12,00),
+                LocalDateTime.of(2018,5,5,12,00) ,
                 scheduleRepository.getOne((long) 3)));
         LOG.info("Schedule Items added " +  scheduleItemRepository.findAll().size());
     }
