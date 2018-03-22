@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
+/*
+    A schedule list class. The list 
+ */
 @Entity
 public class ScheduleList {
     @Id
