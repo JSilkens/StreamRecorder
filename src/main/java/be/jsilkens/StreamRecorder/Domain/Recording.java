@@ -6,6 +6,7 @@ import java.util.Date;
 
 /*
     Recording
+    ---------
     Recording has a start and end date and and a recording file.
  */
 @Entity

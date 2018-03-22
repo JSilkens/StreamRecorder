@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /*
-    A schedule list class. The list 
+    A schedule list class. The list contains a radio station schedule.
  */
 @Entity
 public class ScheduleList {

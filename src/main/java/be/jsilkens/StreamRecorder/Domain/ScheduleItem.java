@@ -6,6 +6,11 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+/*
+ Schedule Item
+ -------------
+ A schedule item a radio station's program. It contains a list of saved recordings and a recording plan.
+ */
 @Entity
 public class ScheduleItem {
     @Id

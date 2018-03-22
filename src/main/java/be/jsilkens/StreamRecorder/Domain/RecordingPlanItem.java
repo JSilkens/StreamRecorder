@@ -2,7 +2,11 @@ package be.jsilkens.StreamRecorder.Domain;
 
 import javax.persistence.*;
 import java.util.Date;
-
+/*
+ Recording plan
+ --------------
+ A recording plan item is a single item from a recording schedule.
+ */
 @Entity
 public class RecordingPlanItem {
 

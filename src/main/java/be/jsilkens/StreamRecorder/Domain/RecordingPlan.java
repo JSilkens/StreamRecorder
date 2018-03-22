@@ -5,6 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
+/*
+ Recording plan
+ --------------
+ A recording plan is a radio station's recording scedule.
+ The plan will continue forever is the Recording Plan's end date is null.
+ */
 @Entity
 public class RecordingPlan {
 

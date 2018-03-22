@@ -9,8 +9,7 @@ import java.util.List;
 /*
     Schedule
     =============
-    A schedule is a single program from a specific channel (stream).
-    It has a recording plan and a list of saved recordings.
+    A schedule is a radio channel schedule containing (multiple) programs (schedule items).
  */
 @Entity
 public class Schedule {
