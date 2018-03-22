@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,12 +51,17 @@ public class DataLoader implements CommandLineRunner {
         LOG.info("Schedule lists added " +  scheduleListRepository.findAll().size());
     }
     private void addSchedule() {
+        List<ScheduleItem> kexpItems = new ArrayList<>();
+        List<ScheduleItem> radioScorpioItems = new ArrayList<>();
+        List<ScheduleItem> studioBrusselItems = new ArrayList<>();
+
+
         scheduleRepository.save(new Schedule(streamRepository.getOne((long) 1),
-                scheduleListRepository.getOne((long) 1))); //KEXP
+                scheduleListRepository.getOne((long) 1) , kexpItems)); //KEXP
         scheduleRepository.save(new Schedule(streamRepository.getOne((long) 2),
-                scheduleListRepository.getOne((long) 1))); //Radio Scorpio
+                scheduleListRepository.getOne((long) 1) , radioScorpioItems)); //Radio Scorpio
         scheduleRepository.save(new Schedule(streamRepository.getOne((long) 3),
-                scheduleListRepository.getOne((long) 1))); //Studio Brussel
+                scheduleListRepository.getOne((long) 1) , studioBrusselItems)); //Studio Brussel
 
         LOG.info("Schedules added " +  scheduleRepository.findAll().size());
     }

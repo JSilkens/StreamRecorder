@@ -22,6 +22,8 @@ public class Schedule {
     @JoinColumn(name = "streamid", nullable = false)
     private Stream recordStream;
 
+
+
     @OneToMany(targetEntity = ScheduleItem.class, mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ScheduleItem> scheduleItems;
@@ -30,10 +32,13 @@ public class Schedule {
     @JoinColumn(name = "schedulelistid")
     private ScheduleList scheduleList;
 
-    public Schedule(Stream recordStream, ScheduleList scheduleList) {
+    public Schedule(Stream recordStream, ScheduleList scheduleList , List<ScheduleItem> scheduleItems) {
         this.recordStream = recordStream;
         this.scheduleList = scheduleList;
+        this.scheduleItems = scheduleItems;
     }
+
+
 
     public Schedule() {
     }
@@ -69,6 +74,7 @@ public class Schedule {
     public void setScheduleList(ScheduleList scheduleList) {
         this.scheduleList = scheduleList;
     }
+
 
     @Override
     public String toString() {
