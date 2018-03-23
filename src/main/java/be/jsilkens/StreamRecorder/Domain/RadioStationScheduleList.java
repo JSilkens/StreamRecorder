@@ -10,7 +10,7 @@ import java.util.List;
     A schedule list class. The list contains a radio station schedule.
  */
 @Entity
-public class ScheduleList {
+public class RadioStationScheduleList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false, name = "schedulelistid")
@@ -18,14 +18,14 @@ public class ScheduleList {
 
     private String collectionName;
 
-    @OneToMany(targetEntity = Schedule.class, mappedBy = "scheduleList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = RadioStationSchedule.class, mappedBy = "radioStationScheduleList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Schedule> scheduleList;
+    private List<RadioStationSchedule> radioStationScheduleList;
 
-    public ScheduleList() {
+    public RadioStationScheduleList() {
     }
 
-    public ScheduleList(String collectionName) {
+    public RadioStationScheduleList(String collectionName) {
         this.collectionName = collectionName;
     }
 
@@ -45,20 +45,20 @@ public class ScheduleList {
         this.collectionName = collectionName;
     }
 
-    public List<Schedule> getScheduleList() {
-        return scheduleList;
+    public List<RadioStationSchedule> getRadioStationScheduleList() {
+        return radioStationScheduleList;
     }
 
-    public void setScheduleList(List<Schedule> scheduleList) {
-        this.scheduleList = scheduleList;
+    public void setRadioStationScheduleList(List<RadioStationSchedule> radioStationScheduleList) {
+        this.radioStationScheduleList = radioStationScheduleList;
     }
 
     @Override
     public String toString() {
-        return "ScheduleList{" +
+        return "RadioStationScheduleList{" +
                 "id=" + id +
                 ", collectionName='" + collectionName + '\'' +
-                ", scheduleList=" + scheduleList +
+                ", radioStationScheduleList=" + radioStationScheduleList +
                 '}';
     }
 }

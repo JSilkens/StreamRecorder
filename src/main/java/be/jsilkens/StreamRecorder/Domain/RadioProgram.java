@@ -4,17 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /*
- Schedule Item
+ RadioStationSchedule Item
  -------------
- A schedule item a radio station's program. It contains a list of saved recordings and a recording plan.
+ A radioStationSchedule item a radio station's program. It contains a list of saved recordings and a recording plan.
  It has a start and end date for the recording period. The recording plan will repeat forever if no end date is given.
  */
 @Entity
-public class ScheduleItem {
+public class RadioProgram {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false, name = "scheduleitemid")
@@ -28,7 +27,7 @@ public class ScheduleItem {
 
     @ManyToOne
     @JoinColumn(name = "scheduleId", nullable = false)
-    private Schedule schedule;
+    private RadioStationSchedule radioStationSchedule;
 
     @OneToMany(targetEntity = Recording.class, mappedBy = "scheduleItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -38,15 +37,15 @@ public class ScheduleItem {
     @JoinColumn(name = "streamid", nullable = false)
     private RecordingPlan recordingPlan;
 
-    public ScheduleItem(String name, LocalDateTime start, LocalDateTime end, Schedule schedule , RecordingPlan recordingPlan) {
+    public RadioProgram(String name, LocalDateTime start, LocalDateTime end, RadioStationSchedule radioStationSchedule, RecordingPlan recordingPlan) {
         this.name = name;
         this.start = start;
         this.end = end;
-        this.schedule = schedule;
+        this.radioStationSchedule = radioStationSchedule;
         this.recordingPlan = recordingPlan;
     }
 
-    public ScheduleItem() {
+    public RadioProgram() {
     }
 
     public Long getId() {
@@ -89,12 +88,12 @@ public class ScheduleItem {
         this.recordings = recordings;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public RadioStationSchedule getRadioStationSchedule() {
+        return radioStationSchedule;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public void setRadioStationSchedule(RadioStationSchedule radioStationSchedule) {
+        this.radioStationSchedule = radioStationSchedule;
     }
 
     public RecordingPlan getRecordingPlan() {
@@ -107,13 +106,13 @@ public class ScheduleItem {
 
     @Override
     public String toString() {
-        return "ScheduleItem{" +
+        return "RadioProgram{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", start=" + start +
                 ", end=" + end +
                 ", recordings=" + recordings +
-                ", schedule =" + schedule +
+                ", radioStationSchedule =" + radioStationSchedule +
                 '}';
     }
 }

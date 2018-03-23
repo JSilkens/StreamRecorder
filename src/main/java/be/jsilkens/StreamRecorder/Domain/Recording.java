@@ -3,7 +3,6 @@ package be.jsilkens.StreamRecorder.Domain;
 import javax.persistence.*;
 import java.io.File;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /*
     Recording
@@ -27,14 +26,14 @@ public class Recording {
 
     @ManyToOne
     @JoinColumn(name = "scheduleitemid", nullable = false)
-    private ScheduleItem scheduleItem;
+    private RadioProgram radioProgram;
 
-    public Recording(String name, LocalDateTime start, LocalDateTime end, File recordingFile, ScheduleItem scheduleItem) {
+    public Recording(String name, LocalDateTime start, LocalDateTime end, File recordingFile, RadioProgram radioProgram) {
         this.name = name;
         this.start = start;
         this.end = end;
         this.recordingFile = recordingFile;
-        this.scheduleItem = scheduleItem;
+        this.radioProgram = radioProgram;
     }
 
     public Recording() {
@@ -80,12 +79,12 @@ public class Recording {
         this.recordingFile = recordingFile;
     }
 
-    public ScheduleItem getScheduleItem() {
-        return scheduleItem;
+    public RadioProgram getRadioProgram() {
+        return radioProgram;
     }
 
-    public void setScheduleItem(ScheduleItem scheduleItem) {
-        this.scheduleItem = scheduleItem;
+    public void setRadioProgram(RadioProgram radioProgram) {
+        this.radioProgram = radioProgram;
     }
 
     @Override
@@ -96,7 +95,7 @@ public class Recording {
                 ", start=" + start +
                 ", end=" + end +
                 ", recordingFile=" + recordingFile +
-                ", scheduleItem=" + scheduleItem +
+                ", radioProgram=" + radioProgram +
                 '}';
     }
 }

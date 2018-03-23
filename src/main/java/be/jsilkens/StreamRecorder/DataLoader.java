@@ -8,30 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
 public class DataLoader implements CommandLineRunner {
     private StreamRepository streamRepository;
     private RecordingRepository recordingRepository;
-    private ScheduleItemRepository scheduleItemRepository;
-    private ScheduleListRepository scheduleListRepository;
-    private ScheduleRepository scheduleRepository;
+    private RadioProgramRepository radioProgramRepository;
+    private RadioStationScheduleListRepository radioStationScheduleListRepository;
+    private RadioStationScheduleRepository radioStationScheduleRepository;
     private static final Logger LOG = LoggerFactory.getLogger(DataLoader.class);
 
     @Autowired
     public DataLoader(StreamRepository steamRepository , RecordingRepository recordingRepository ,
-                      ScheduleItemRepository scheduleItemRepository , ScheduleListRepository scheduleListRepository,
-                      ScheduleRepository scheduleRepository) {
+                      RadioProgramRepository radioProgramRepository, RadioStationScheduleListRepository radioStationScheduleListRepository,
+                      RadioStationScheduleRepository radioStationScheduleRepository) {
         this.streamRepository = steamRepository;
         this.recordingRepository = recordingRepository;
-        this.scheduleItemRepository = scheduleItemRepository;
-        this.scheduleListRepository = scheduleListRepository;
-        this.scheduleRepository = scheduleRepository;
+        this.radioProgramRepository = radioProgramRepository;
+        this.radioStationScheduleListRepository = radioStationScheduleListRepository;
+        this.radioStationScheduleRepository = radioStationScheduleRepository;
     }
 
     @Override
@@ -47,23 +45,23 @@ public class DataLoader implements CommandLineRunner {
 
 
     private void addScheduleList() {
-        scheduleListRepository.save(new ScheduleList("My radio list"));
-        LOG.info("Schedule lists added " +  scheduleListRepository.findAll().size());
+        radioStationScheduleListRepository.save(new RadioStationScheduleList("My radio list"));
+        LOG.info("RadioStationSchedule lists added " +  radioStationScheduleListRepository.findAll().size());
     }
     private void addSchedule() {
-        List<ScheduleItem> kexpItems = new ArrayList<>();
-        List<ScheduleItem> radioScorpioItems = new ArrayList<>();
-        List<ScheduleItem> studioBrusselItems = new ArrayList<>();
+        List<RadioProgram> kexpItems = new ArrayList<>();
+        List<RadioProgram> radioScorpioItems = new ArrayList<>();
+        List<RadioProgram> studioBrusselItems = new ArrayList<>();
 
 
-        scheduleRepository.save(new Schedule(streamRepository.getOne((long) 1),
-                scheduleListRepository.getOne((long) 1) , kexpItems)); //KEXP
-        scheduleRepository.save(new Schedule(streamRepository.getOne((long) 2),
-                scheduleListRepository.getOne((long) 1) , radioScorpioItems)); //Radio Scorpio
-        scheduleRepository.save(new Schedule(streamRepository.getOne((long) 3),
-                scheduleListRepository.getOne((long) 1) , studioBrusselItems)); //Studio Brussel
+        radioStationScheduleRepository.save(new RadioStationSchedule(streamRepository.getOne((long) 1),
+                radioStationScheduleListRepository.getOne((long) 1) , kexpItems)); //KEXP
+        radioStationScheduleRepository.save(new RadioStationSchedule(streamRepository.getOne((long) 2),
+                radioStationScheduleListRepository.getOne((long) 1) , radioScorpioItems)); //Radio Scorpio
+        radioStationScheduleRepository.save(new RadioStationSchedule(streamRepository.getOne((long) 3),
+                radioStationScheduleListRepository.getOne((long) 1) , studioBrusselItems)); //Studio Brussel
 
-        LOG.info("Schedules added " +  scheduleRepository.findAll().size());
+        LOG.info("Schedules added " +  radioStationScheduleRepository.findAll().size());
     }
 
     private void addStreams() {
@@ -81,16 +79,16 @@ public class DataLoader implements CommandLineRunner {
         recordingRepository.save(new Recording("eerste rec",
                 LocalDateTime.of(2018,12,30,12,00),
                 LocalDateTime.of(2018,12,30,13,00), null
-                , scheduleItemRepository.getOne((long) 1)));
+                , radioProgramRepository.getOne((long) 1)));
         LOG.info("Recordings added " +  recordingRepository.findAll().size());
     }
     private void addScheduleItems() {
         RecordingPlan leftoRecordingPlan = new RecordingPlan(new ArrayList<>());
 
-        scheduleItemRepository.save(new ScheduleItem("Lefto",
+        radioProgramRepository.save(new RadioProgram("Lefto",
                 LocalDateTime.of(2018,5,5,12,00),
                 LocalDateTime.of(2018,5,12,12,00) ,
-                scheduleRepository.getOne((long) 3)));
-        LOG.info("Schedule Items added " +  scheduleItemRepository.findAll().size());
+                radioStationScheduleRepository.getOne((long) 3), leftoRecordingPlan));
+        LOG.info("RadioStationSchedule Items added " +  radioProgramRepository.findAll().size());
     }
 }
