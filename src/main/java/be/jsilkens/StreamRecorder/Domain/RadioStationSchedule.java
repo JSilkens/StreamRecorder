@@ -22,7 +22,7 @@ public class RadioStationSchedule {
     private Stream recordStream;
 
 
-    @OneToMany(targetEntity = RadioProgram.class, mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = RadioProgram.class, mappedBy = "radioStationSchedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<RadioProgram> radioPrograms;
 

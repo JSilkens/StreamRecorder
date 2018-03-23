@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /*
- RadioStationSchedule Item
+ Schedule Item
  -------------
- A radioStationSchedule item a radio station's program. It contains a list of saved recordings and a recording plan.
+ A Schedule item a radio station's program. It contains a list of saved recordings and a recording plan.
  It has a start and end date for the recording period. The recording plan will repeat forever if no end date is given.
  */
 @Entity
@@ -29,7 +29,7 @@ public class RadioProgram {
     @JoinColumn(name = "scheduleId", nullable = false)
     private RadioStationSchedule radioStationSchedule;
 
-    @OneToMany(targetEntity = Recording.class, mappedBy = "scheduleItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Recording.class, mappedBy = "radioProgram", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Recording> recordings;
 
