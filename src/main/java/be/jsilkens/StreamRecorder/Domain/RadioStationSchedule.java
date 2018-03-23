@@ -14,7 +14,7 @@ import java.util.List;
 public class RadioStationSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false, name = "scheduleid")
+    @Column(nullable = false, updatable = false, name = "radiostationscheduleid")
     private Long id;
 
     @OneToOne(targetEntity = Stream.class)

@@ -27,6 +27,9 @@ public class RecordingPlan {
         this.recordingPlanItems = recordingPlanItems;
     }
 
+    public RecordingPlan() {
+    }
+
     public Long getId() {
         return id;
     }

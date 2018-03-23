@@ -1,6 +1,7 @@
 package be.jsilkens.StreamRecorder.Domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 /*
  Recording plan
@@ -15,15 +16,15 @@ public class RecordingPlanItem {
     @Column(nullable = false, updatable = false, name = "recordingplanitemid")
     private Long id;
 
-    private Date start;
+    private LocalDateTime start;
 
-    private Date end;
+    private LocalDateTime end;
 
     @ManyToOne
     @JoinColumn(name = "recordingplanid", nullable = false)
     private RecordingPlan recordingPlan;
 
-    public RecordingPlanItem(Date start, Date end, RecordingPlan recordingPlan) {
+    public RecordingPlanItem(LocalDateTime start, LocalDateTime end, RecordingPlan recordingPlan) {
         this.start = start;
         this.end = end;
         this.recordingPlan = recordingPlan;
@@ -37,19 +38,19 @@ public class RecordingPlanItem {
         this.id = id;
     }
 
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 

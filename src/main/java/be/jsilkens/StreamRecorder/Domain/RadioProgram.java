@@ -26,7 +26,7 @@ public class RadioProgram {
     private LocalDateTime end;
 
     @ManyToOne
-    @JoinColumn(name = "scheduleId", nullable = false)
+    @JoinColumn(name = "radioprogramid", nullable = false)
     private RadioStationSchedule radioStationSchedule;
 
     @OneToMany(targetEntity = Recording.class, mappedBy = "radioProgram", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -34,7 +34,7 @@ public class RadioProgram {
     private List<Recording> recordings;
 
     @OneToOne(targetEntity = RecordingPlan.class)
-    @JoinColumn(name = "streamid", nullable = false)
+    @JoinColumn(name = "recordingplanid", nullable = false)
     private RecordingPlan recordingPlan;
 
     public RadioProgram(String name, LocalDateTime start, LocalDateTime end, RadioStationSchedule radioStationSchedule, RecordingPlan recordingPlan) {

@@ -19,36 +19,42 @@ public class DataLoader implements CommandLineRunner {
     private RadioProgramRepository radioProgramRepository;
     private RadioStationScheduleListRepository radioStationScheduleListRepository;
     private RadioStationScheduleRepository radioStationScheduleRepository;
+    private RecordingPlanRepository recordingPlanRepository;
+    private RecordingPlanItemRepository recordingPlanItemRepository;
     private static final Logger LOG = LoggerFactory.getLogger(DataLoader.class);
 
     @Autowired
     public DataLoader(StreamRepository steamRepository , RecordingRepository recordingRepository ,
                       RadioProgramRepository radioProgramRepository, RadioStationScheduleListRepository radioStationScheduleListRepository,
-                      RadioStationScheduleRepository radioStationScheduleRepository) {
+                      RadioStationScheduleRepository radioStationScheduleRepository , RecordingPlanRepository recordingPlanRepository,
+                      RecordingPlanItemRepository recordingPlanItemRepository) {
         this.streamRepository = steamRepository;
         this.recordingRepository = recordingRepository;
         this.radioProgramRepository = radioProgramRepository;
         this.radioStationScheduleListRepository = radioStationScheduleListRepository;
         this.radioStationScheduleRepository = radioStationScheduleRepository;
+        this.recordingRepository = recordingRepository;
+        this.recordingPlanRepository = recordingPlanRepository;
+        this.recordingPlanItemRepository = recordingPlanItemRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        addScheduleList();
+        addRadioStationScheduleList();
         addStreams();
-        addSchedule();
-      //  addScheduleItems();
-      //  addRecordings();
+        addRadioStationSchedule();
+        addRadioPrograms();
+        addRecordings();
 
     }
 
 
 
-    private void addScheduleList() {
+    private void addRadioStationScheduleList() {
         radioStationScheduleListRepository.save(new RadioStationScheduleList("My radio list"));
         LOG.info("RadioStationSchedule lists added " +  radioStationScheduleListRepository.findAll().size());
     }
-    private void addSchedule() {
+    private void addRadioStationSchedule() {
         List<RadioProgram> kexpItems = new ArrayList<>();
         List<RadioProgram> radioScorpioItems = new ArrayList<>();
         List<RadioProgram> studioBrusselItems = new ArrayList<>();
@@ -82,13 +88,28 @@ public class DataLoader implements CommandLineRunner {
                 , radioProgramRepository.getOne((long) 1)));
         LOG.info("Recordings added " +  recordingRepository.findAll().size());
     }
-    private void addScheduleItems() {
-        RecordingPlan leftoRecordingPlan = new RecordingPlan(new ArrayList<>());
+    private void addRadioPrograms() {
+        addRecordingPlans();
+
 
         radioProgramRepository.save(new RadioProgram("Lefto",
                 LocalDateTime.of(2018,5,5,12,00),
                 LocalDateTime.of(2018,5,12,12,00) ,
-                radioStationScheduleRepository.getOne((long) 3), leftoRecordingPlan));
+                radioStationScheduleRepository.getOne((long) 3), recordingPlanRepository.getOne((long) 1)));
         LOG.info("RadioStationSchedule Items added " +  radioProgramRepository.findAll().size());
+    }
+
+    private void addRecordingPlans() {
+        addRecordingPlanItems();
+        recordingPlanRepository.save(new RecordingPlan());
+    }
+
+    private void addRecordingPlanItems() {
+        recordingPlanRepository.save(new RecordingPlan());
+        RecordingPlanItem item = new RecordingPlanItem(LocalDateTime.of(2018,5,5,12,00),
+                LocalDateTime.of(2018,5,5,12,00),
+                recordingPlanRepository.getOne((long)1));
+
+        recordingPlanItemRepository.save(item);
     }
 }
