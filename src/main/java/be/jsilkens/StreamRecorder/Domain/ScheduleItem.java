@@ -34,11 +34,16 @@ public class ScheduleItem {
     @JsonIgnore
     private List<Recording> recordings;
 
-    public ScheduleItem(String name, LocalDateTime start, LocalDateTime end, Schedule schedule) {
+    @OneToOne(targetEntity = RecordingPlan.class)
+    @JoinColumn(name = "streamid", nullable = false)
+    private RecordingPlan recordingPlan;
+
+    public ScheduleItem(String name, LocalDateTime start, LocalDateTime end, Schedule schedule , RecordingPlan recordingPlan) {
         this.name = name;
         this.start = start;
         this.end = end;
         this.schedule = schedule;
+        this.recordingPlan = recordingPlan;
     }
 
     public ScheduleItem() {
@@ -90,6 +95,14 @@ public class ScheduleItem {
 
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
+    }
+
+    public RecordingPlan getRecordingPlan() {
+        return recordingPlan;
+    }
+
+    public void setRecordingPlan(RecordingPlan recordingPlan) {
+        this.recordingPlan = recordingPlan;
     }
 
     @Override

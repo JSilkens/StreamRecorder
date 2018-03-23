@@ -85,9 +85,11 @@ public class DataLoader implements CommandLineRunner {
         LOG.info("Recordings added " +  recordingRepository.findAll().size());
     }
     private void addScheduleItems() {
+        RecordingPlan leftoRecordingPlan = new RecordingPlan(new ArrayList<>());
+
         scheduleItemRepository.save(new ScheduleItem("Lefto",
                 LocalDateTime.of(2018,5,5,12,00),
-                LocalDateTime.of(2018,5,5,12,00) ,
+                LocalDateTime.of(2018,5,12,12,00) ,
                 scheduleRepository.getOne((long) 3)));
         LOG.info("Schedule Items added " +  scheduleItemRepository.findAll().size());
     }
