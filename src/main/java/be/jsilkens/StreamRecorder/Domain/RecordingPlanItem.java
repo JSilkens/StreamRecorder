@@ -30,6 +30,9 @@ public class RecordingPlanItem {
         this.recordingPlan = recordingPlan;
     }
 
+    public RecordingPlanItem() {
+    }
+
     public Long getId() {
         return id;
     }

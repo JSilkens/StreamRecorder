@@ -101,15 +101,17 @@ public class DataLoader implements CommandLineRunner {
 
     private void addRecordingPlans() {
         addRecordingPlanItems();
-        recordingPlanRepository.save(new RecordingPlan());
+       // recordingPlanRepository.save(new RecordingPlan());
     }
 
     private void addRecordingPlanItems() {
         recordingPlanRepository.save(new RecordingPlan());
+        LOG.info("Recordingplans added " + recordingPlanRepository.findAll().size());
         RecordingPlanItem item = new RecordingPlanItem(LocalDateTime.of(2018,5,5,12,00),
                 LocalDateTime.of(2018,5,5,12,00),
                 recordingPlanRepository.getOne((long)1));
 
         recordingPlanItemRepository.save(item);
+        LOG.info("Recordingplan items added " + recordingPlanItemRepository.findAll().size());
     }
 }
