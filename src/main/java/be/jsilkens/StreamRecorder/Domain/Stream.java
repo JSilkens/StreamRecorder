@@ -10,7 +10,7 @@ public class Stream {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false, name = "streamid")
-    private long id;
+    private Long id;
 
     private String name;
 

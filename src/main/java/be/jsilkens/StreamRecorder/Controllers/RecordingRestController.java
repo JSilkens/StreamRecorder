@@ -5,6 +5,8 @@ import be.jsilkens.StreamRecorder.Repository.RecordingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.modelmapper.ModelMapper;
+import be.jsilkens.StreamRecorder.Dtos.RecordingDTO;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,9 +31,11 @@ public class RecordingRestController {
     }
 
     @GetMapping(value = "/get/{id}")
-    public Recording getRecording(@PathVariable Long id) {
-        Recording recording = recordingRepository.getOne(id);
-        return recording;
+    public RecordingDTO getRecording(@PathVariable Long id , Recording recording , ModelMapper modelMapper) {
+        recording = recordingRepository.getOne(id);
+        //RecordingDTO dto = modelMapper.map(recording , RecordingDTO.class);
+        return modelMapper.map(recording , RecordingDTO.class);
+        //return dto;
     }
 
     @PutMapping(value = "/put")
