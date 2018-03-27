@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
     Recording has a start and end date and and a recording file.
  */
 @Entity
-public class Recording {
+public class Recording{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false, name = "recordingid")
@@ -94,8 +94,6 @@ public class Recording {
                 ", name='" + name + '\'' +
                 ", start=" + start +
                 ", end=" + end +
-                ", recordingFile=" + recordingFile +
-                ", radioProgram=" + radioProgram +
                 '}';
     }
 }

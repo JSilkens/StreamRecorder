@@ -17,4 +17,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: mappings,beans
+        include: mappings,beans,errors

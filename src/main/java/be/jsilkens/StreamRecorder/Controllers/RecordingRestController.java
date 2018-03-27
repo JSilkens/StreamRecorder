@@ -29,8 +29,8 @@ public class RecordingRestController {
     }
 
     @GetMapping(value = "/get/{id}")
-    public Recording getRecording(@PathVariable Long id, Recording recording){
-        recording = recordingRepository.getOne(id);
+    public Recording getRecording(@PathVariable Long id) {
+        Recording recording = recordingRepository.getOne(id);
         return recording;
     }
 
